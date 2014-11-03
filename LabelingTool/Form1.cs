@@ -187,7 +187,7 @@ namespace LabelingTool
             int rCnt = 0;
 
             xlApp = new Excel.ApplicationClass();
-            xlWorkBook = xlApp.Workbooks.Open(ofd.FileName, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+            xlWorkBook = xlApp.Workbooks.Open(ofd.FileName, 0, false, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
             xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
 
             range = xlWorkSheet.UsedRange;
@@ -224,10 +224,11 @@ namespace LabelingTool
             int rCnt = 0;
 
             xlApp = new Excel.ApplicationClass();
-            xlWorkBook = xlApp.Workbooks.Open(this.fileName, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+            xlWorkBook = xlApp.Workbooks.Open(this.fileName,0, false, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
             xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
 
             range = xlWorkSheet.UsedRange;
+            //xlApp.Visible = true;
 
             for (rCnt = 2; rCnt <= Program.tweets.Count + 1; rCnt++)
             {
@@ -241,6 +242,7 @@ namespace LabelingTool
             }
 
             xlWorkBook.Save();
+            
             xlWorkBook.Close(true, null, null);
             xlApp.Quit();
 
